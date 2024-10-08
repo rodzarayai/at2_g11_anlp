@@ -1,5 +1,44 @@
 #NER Model for one CV
 
+#Download relevant packages
+
+import spacy
+nlp = spacy.load('en_core_web_sm')
+
+import pandas as pd
+import numpy as np
+import re
+import nltk
+from nltk.corpus import stopwords
+from numpy import array
+import seaborn as sns
+import matplotlib.pyplot as plt
+import time
+import json
+from collections import Counter
+from collections import defaultdict
+import torch
+import docx2txt
+import random
+import PyPDF2
+import os
+
+
+from tqdm import tqdm
+from transformers import pipeline, AutoTokenizer, AutoModel
+from subprocess import list2cmdline
+from pdfminer.high_level import extract_text
+from sklearn.metrics.pairwise import cosine_similarity
+from spacy.matcher import Matcher
+from tensorflow.keras.preprocessing.text import one_hot, Tokenizer
+from tensorflow.keras.preprocessing.sequence import pad_sequences
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Activation, Dropout, Dense, Flatten, GlobalMaxPooling1D, Embedding, Conv1D, LSTM
+from tensorflow.keras.layers import Flatten, GlobalMaxPooling1D, Embedding, Conv1D, LSTM
+from sklearn.model_selection import train_test_split
+from sklearn.feature_extraction.text import TfidfVectorizer
+
+
 #Text extraction depending on file type
 
 def extract_text_from_pdf(pdf_path):
