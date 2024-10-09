@@ -1,0 +1,339 @@
+,skill,count
+0,chrome,5
+1,google,46
+2,collaboration,101
+3,mobile,42
+4,business,438
+5,content management,12
+6,support,398
+7,schedule,204
+8,marketing,180
+9,swift,5
+10,workflow,20
+11,languages,24
+12,play,42
+13,accounting,59
+14,adobe photoshop,3
+15,finance,76
+16,landing pages,7
+17,testing,84
+18,advertising,45
+19,design,172
+20,javascript,19
+21,laravel,4
+22,jquery,4
+23,security,92
+24,software,189
+25,databases,39
+26,bootstrap,5
+27,wordpress,11
+28,modular design,1
+29,figma,5
+30,interaction,24
+31,sketch,5
+32,wireframing,1
+33,project management,81
+34,slack,12
+35,shopify,4
+36,webflow,3
+37,drupal,1
+38,mysql,7
+39,sass,1
+40,framework,26
+41,rest api,2
+42,git,14
+43,hubspot,3
+44,commerce,13
+45,communications,104
+46,pixel,2
+47,invision,2
+48,framer,1
+49,ios,10
+50,android,8
+51,engineering,85
+52,computer science,42
+53,java,14
+54,linux,8
+55,debugging,6
+56,library,8
+57,component,13
+58,deployment,31
+59,graphic design,7
+60,business administration,17
+61,mode,5
+62,email marketing,10
+63,analytics,64
+64,google maps,2
+65,react native,2
+66,software engineering,23
+67,python,16
+68,rails,5
+69,elasticsearch,2
+70,ruby,10
+71,groovy,1
+72,react,19
+73,computer engineering,5
+74,marathon,1
+75,machine learning,9
+76,machine learning tools,1
+77,libraries,1
+78,operating systems,18
+79,bitbucket,1
+80,spring,7
+81,algorithms,7
+82,docker,12
+83,nosql,8
+84,data structures,5
+85,database,53
+86,confluence,8
+87,spring boot,1
+88,throughput,2
+89,windows,43
+90,release,8
+91,bash,4
+92,angularjs,1
+93,server,23
+94,angular,5
+95,azure,15
+96,version control system,1
+97,typescript,9
+98,jest,1
+99,yarn,1
+100,specification,4
+101,cryptography,2
+102,bitcoin,1
+103,blockchain,3
+104,documentation,102
+105,ethereum,1
+106,gitlab,4
+107,graph databases,1
+108,monitoring,72
+109,material,24
+110,supervisory control,1
+111,rotation,12
+112,box,21
+113,storm,2
+114,payments,28
+115,medium,10
+116,twitter,13
+117,web app,1
+118,mongodb,6
+119,continuous integration,5
+120,search engine,8
+121,postgresql,5
+122,devops,12
+123,front end,4
+124,redis,3
+125,ecommerce,36
+126,graphql,2
+127,integer programming,1
+128,regression analysis,1
+129,data quality,2
+130,data management,12
+131,systems engineering,4
+132,color vision,6
+133,oracle,11
+134,flask,1
+135,django,3
+136,relational database,2
+137,operating system,9
+138,virtual memory,1
+139,memory management,1
+140,source code,3
+141,computer network,2
+142,network security,7
+143,encryption,4
+144,devise,4
+145,zendesk,2
+146,intercom,3
+147,terraform,3
+148,serverless,4
+149,issue tracking,2
+150,webpack,1
+151,xamarin,1
+152,ml,2
+153,authentication,4
+154,cypress,1
+155,github,7
+156,rspec,1
+157,fabric,4
+158,heroku,1
+159,terminal,7
+160,segmentation,4
+161,chartbeat,1
+162,google analytics,11
+163,tableau,6
+164,trello,2
+165,marketing automation,8
+166,business process,10
+167,response time,1
+168,variables,3
+169,workload,5
+170,diagram,2
+171,forums,7
+172,certificate,14
+173,selenium,1
+174,jenkins,7
+175,system testing,1
+176,appium,1
+177,functional testing,1
+178,prometheus,1
+179,datadog,1
+180,kafka,3
+181,testing frameworks,1
+182,helm,3
+183,istio,2
+184,kubernetes,4
+185,data mining,2
+186,access control,4
+187,data analysis,19
+188,middleware,2
+189,visualization,8
+190,data visualization,3
+191,ranking,5
+192,query languages,1
+193,publishing,6
+194,civil engineering,3
+195,construction engineering,2
+196,document retrieval,1
+197,trend analysis,1
+198,code review,2
+199,electrical engineering,7
+200,stars,4
+201,business intelligence,6
+202,wireless,12
+203,ambiguity,12
+204,pose,2
+205,data science,8
+206,utilities,6
+207,sorting,6
+208,relay,3
+209,search engines,1
+210,first class,1
+211,router,3
+212,financial system,3
+213,operations management,4
+214,data processing,3
+215,time of arrival,1
+216,macos,5
+217,residual,3
+218,environmental engineering,1
+219,waste management,1
+220,scalability,4
+221,mandrill,1
+222,mailchimp,2
+223,nginx,1
+224,web servers,2
+225,application server,3
+226,chef,1
+227,cloud hosting,1
+228,performance monitoring,4
+229,solr,1
+230,firebase,1
+231,augmented reality,3
+232,flutter,1
+233,material design,1
+234,systems management,1
+235,kotlin,2
+236,tracking system,11
+237,segment,12
+238,parcel,1
+239,knowledge base,5
+240,ethernet,3
+241,compose,4
+242,help desk,7
+243,google tag manager,1
+244,user interface,2
+245,woocommerce,1
+246,paypal,1
+247,knowledge management,2
+248,payment services,1
+249,firefox,1
+250,queue,4
+251,voice over ip,1
+252,task management,3
+253,ai,6
+254,artificial intelligence,4
+255,google sheets,4
+256,asana,1
+257,customer relationship management,10
+258,cataloging,2
+259,medical imaging,1
+260,architectural engineering,1
+261,comprehension,2
+262,agile project management,1
+263,locust,1
+264,back office,1
+265,cassandra,1
+266,amazon web services,2
+267,big data,5
+268,microsoft azure,2
+269,network management,1
+270,telecommunications,6
+271,redux,1
+272,code coverage,1
+273,unity,1
+274,code quality,1
+275,circleci,1
+276,openshift,1
+277,couchbase,1
+278,magento,1
+279,scanner,3
+280,data integrity,8
+281,process management,6
+282,google drive,4
+283,asynchronous communication,1
+284,airflow,1
+285,social media tools,1
+286,compass,3
+287,computer hardware,1
+288,network topology,1
+289,wide area network,1
+290,telephony,2
+291,virtualization platform,1
+292,tower,3
+293,syntax,1
+294,kong,2
+295,snowflake,1
+296,monitoring tools,2
+297,echo,1
+298,apache tomcat,1
+299,scripting language,1
+300,file system,2
+301,quality of service,1
+302,algorithm,1
+303,rocket,1
+304,godaddy,1
+305,data modeling,1
+306,system integration,1
+307,perl,2
+308,complex system,1
+309,file storage,1
+310,level of detail,3
+311,information management,2
+312,multimedia,3
+313,data validation,1
+314,data consistency,1
+315,unicorn,1
+316,file format,1
+317,missing data,1
+318,vault,1
+319,elixir,1
+320,simulation,2
+321,virtual reality,1
+322,computer architecture,1
+323,computer vision,1
+324,maven,1
+325,microsoft sql server,1
+326,computer security,1
+327,data center,1
+328,varnish,1
+329,data access,1
+330,handover,1
+331,gauges,2
+332,database design,1
+333,web service,1
+334,network architecture,2
+335,unreal engine,1
+336,actuarial science,1
+337,computer programming,1

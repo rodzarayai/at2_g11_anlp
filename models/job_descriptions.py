@@ -1,5 +1,5 @@
 import streamlit as st
-
+from spacy.matcher import Matcher
 import pandas as pd
 import pickle
 import json
@@ -80,11 +80,11 @@ def job_desc_emb(new_job_cleaned):
     job_desc_embedding = get_embeddings(new_job_cleaned, model_name, device, model)
     print("Model and tokenizer loaded from pre-saved state.")
 
-    THRESHOLD = 0.65
+    THRESHOLD = 0.68
     top_skills = find_top_skills(job_desc_embedding, skill_embeddings, skills_list, THRESHOLD)
 
     if not top_skills:
-        st.warning("No skills found that exceed the threshold.")
+        #st.warning("No skills found that exceed the threshold.")
         skills_list, scores_list = [], []
     else:
         skills_list, scores_list = zip(*top_skills)
@@ -96,7 +96,7 @@ def job_desc_emb(new_job_cleaned):
 
     return total_list, skills_matched, job_desc_embedding
 
-
+#It takes so long to load. It is changed by a pre-loaded csv file with the set of skills previously calculated.
 def get_skills_df(df):
 
 ###################### JD  SECTION
@@ -147,7 +147,7 @@ def get_skills_df(df):
     #Get skills
     text_preprocessor = TextPreprocessor(processing_mode='none')
     df = text_preprocessor.preprocess_dataframe(df, 'job_description')
-    df['skills_matched_cleaned'] = df['job_description_processed_cleaned'].apply(find_skills)
+    df['skills_matched_cleaned'] = df['job_description_processed_cleaned'].apply(find_skills, matcher=matcher)
 
     jobs_skills = [skill for sublist in df['skills_matched_cleaned'] for skill in sublist]
 
