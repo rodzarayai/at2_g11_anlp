@@ -23,7 +23,6 @@ def job_desc_emb(new_job_cleaned):
     #test with custom job desc. This shouls be replaced by a csv file
 
 
-
     #=====================================================================Load the files
 
     #Open files. Depending on where we have run these notebooks we can use different namings
@@ -84,12 +83,80 @@ def job_desc_emb(new_job_cleaned):
     THRESHOLD = 0.65
     top_skills = find_top_skills(job_desc_embedding, skill_embeddings, skills_list, THRESHOLD)
 
-    skills_list, scores_list = zip(*top_skills)
+    if not top_skills:
+        st.warning("No skills found that exceed the threshold.")
+        skills_list, scores_list = [], []
+    else:
+        skills_list, scores_list = zip(*top_skills)
+        skills_list = [skill.replace('-', ' ') for skill in skills_list]
+    #skills_list, scores_list = zip(*top_skills)
     #format the skills without the -
-    skills_list = [skill.replace('-', ' ') for skill in skills_list]
-
+    
     total_list = list(set(skills_list + skills_matched))
 
     return total_list, skills_matched, job_desc_embedding
+
+
+def get_skills_df(df):
+
+###################### JD  SECTION
+# Get paths
+    script_dir = os.path.dirname(os.path.realpath(__file__))
+    data_dir = os.path.join(script_dir, '../data')
+
+    #test with custom job desc. This shouls be replaced by a csv file
+
+    #=====================================================================Load the files
+
+    #Open files. Depending on where we have run these notebooks we can use different namings
+    with open(os.path.join(data_dir, 'job_desc_embeddings_skills.pkl'), 'rb') as f:
+    #with open('../data/job_desc_embeddings_skills.pkl', 'rb') as f:
+    #with open('/content/drive/MyDrive/AT2/data/job_desc_embeddings_skills.pkl', 'rb') as f: #using in colab
+        skill_embeddings = pickle.load(f)
+        skill_embeddings = np.squeeze(skill_embeddings, axis=1)
+
+    with open(os.path.join(data_dir, 'job_desc_embeddings.pkl'), 'rb') as f:
+    #with open('../data/job_desc_embeddings.pkl', 'rb') as f:
+    #with open('/content/drive/MyDrive/AT2/data/job_desc_embeddings.pkl', 'rb') as f:
+        job_desc_embeddings = pickle.load(f)
+
+    # Load patterns from the JSONL file
+    skills_patterns = []
+    with open(os.path.join(data_dir, 'jz_skill_patterns.jsonl'), 'rb') as f:
+    #with open('../data/jz_skill_patterns.jsonl', 'r') as f:
+    #with open('/content/drive/MyDrive/AT2/data/jz_skill_patterns.jsonl', 'r') as f:
+        for line in f:
+            skills_patterns.append(json.loads(line))
+
+    skills_path = os.path.join(data_dir, '../data/skills.json')
+    skills_list = load_skills_from_json(skills_path)
+    #skills_list = load_skills_from_json('/content/drive/MyDrive/AT2/data/skills.json')
+
+
+    #=====================================================================PROCESSING
+
+
+    #Get skills list from simpler matcher - 
+    nlp = spacy.load("en_core_web_sm")
+    matcher = Matcher(nlp.vocab)
+
+    # Add patterns to the matcher
+    for pattern in skills_patterns:
+        matcher.add(pattern['label'], [pattern['pattern']])
+        
+    #Get skills
+    text_preprocessor = TextPreprocessor(processing_mode='none')
+    df = text_preprocessor.preprocess_dataframe(df, 'job_description')
+    df['skills_matched_cleaned'] = df['job_description_processed_cleaned'].apply(find_skills)
+
+    jobs_skills = [skill for sublist in df['skills_matched_cleaned'] for skill in sublist]
+
+    # Count the occurrences of each skill
+    skill_counts = Counter(jobs_skills)
+
+    # Convert the Counter object to a DataFrame for plotting
+    skills_df = pd.DataFrame(skill_counts.items(), columns=['skill', 'count'])
+
+    return skills_df
 
 
