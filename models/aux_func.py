@@ -163,7 +163,6 @@ def get_embeddings(text, model_name, device, model):
 #============================== GET THE SKILLS
 
 
-
 # Define a function to apply the matcher and find skills in the text
 def find_skills(text, matcher):
     doc = nlp(text)
