@@ -21,3 +21,21 @@ The CV Job Matcher App is a user-friendly, web-based platform designed to assist
 * Data Privacy: The app ensures user privacy by not storing or sharing any uploaded CVs. All data is processed temporarily in memory for comparison purposes.
 
 
+=======
+# Indeed Job Scraper
+
+This Python project automates the process of scraping job listings from Indeed using Selenium. The data is stored in a SQLite database and can be analyzed or visualized through Jupyter notebooks.
+[![Youtube Demo (1min)](screen.png)](https://www.youtube.com/watch?v=qajPHZKbfck)
+
+## Project Structure
+
+- `env/`: Virtual environment for project dependencies.
+- `.gitignore`: Specifies intentionally untracked files to ignore.
+- `database_tools.py`: Contains utilities for interacting with the SQLite database.
+- `ddl.sql`: SQL script for creating database tables.
+- `indeed_scraper.py`: Main script for scraping job data from Indeed.
+- `indeed.db`: SQLite database file containing the scraped data.
+- `requirements.txt`: List of dependencies to install using pip.
+- `selenium_base.py`: Base setup for Selenium WebDriver.
+- `view_data.ipynb`: Jupyter notebook for data analysis and visualization.
+
