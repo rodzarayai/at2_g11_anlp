@@ -43,4 +43,3 @@ if __name__ == '__main__':
             dont_update_job_descriptions=False, 
             **search_params
         )
-# python main.py --keywords "Engineering" --location "Toronto" --country CANADA --sort_by relevance --max_pages 2 --dont_search --dont_update_job_descriptions
