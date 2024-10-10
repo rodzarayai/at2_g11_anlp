@@ -159,7 +159,7 @@ def extract_text_from_pdf(uploaded_file):
 uploaded_file = st.file_uploader("Upload your CV in PDF format", type="pdf")
 
 if uploaded_file is not None:
-    st.success("Your CV was successfully uploaded! It is being processing ...")
+    st.success("Your CV was successfully uploaded! It's being processed ...")
     # If a file is uploaded, extract and display the text
     cv_text = extract_text_from_pdf(uploaded_file)
     #st.text_area("Extracted Text", cv_text, height=300)
