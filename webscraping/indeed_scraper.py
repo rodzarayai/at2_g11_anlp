@@ -18,8 +18,7 @@ class IndeedScraper(SeleniumScraper):
     def __init__(self, browser: str = Browsers.CHROME, use_database: bool = False):
         super().__init__(browser=browser, use_database=use_database)
         self.session_id = None
-
-    """Type Parameters for Indeed Scraper"""
+        
     class SortBy:
         DATE = 'date'
         RELEVANCE = 'relevance'
@@ -28,7 +27,6 @@ class IndeedScraper(SeleniumScraper):
         USA = 'com'
         CANADA = 'ca'
 
-    """The URL Builder for Indeed Scraper"""
 
     def build_query_url(self,
                         keywords: str = None,  # job title, skills, etc
@@ -66,10 +64,8 @@ class IndeedScraper(SeleniumScraper):
         elif radius is not None and location is None:
             self.url = f"{self.url}"
         elif radius is not None and location.lower() != 'remote' and location is not None:
-            # add the radius only if its not a remote job, and the location is specified as something other than remote
             self.url = f"{self.url}&radius={radius}"
 
-        # order the search results by date or relevance
         if sort_by is not None:
             if sort_by in ('date', 'relevance'):
                 if sort_by == 'date':
@@ -81,7 +77,6 @@ class IndeedScraper(SeleniumScraper):
                 raise ValueError(
                     'Invalid sort_by value. Use "date" or "relevance"')
 
-        # add the page number to the query
         if page_number is not None:
             # page numbers not 1,2,3, etc. its 0, 10, 20, etc. where 0=1, 10=2, 20=3, etc.
             if page_number == 1:
@@ -138,7 +133,6 @@ class IndeedScraper(SeleniumScraper):
         self.driver.find_element(
             by=By.CSS_SELECTOR, value='a[data-testid="pagination-page-prev"]').click()
 
-    # !!!! TODO: This function doesnt work on all resolutions and browsers. Also it should minimize back. Full-screen indeed is bright.
     def requires_human_verification(self):
         logging.log(logging.INFO, 'Checking for human verification')
         # works on 1080 * 1920 resolution, with firefox browser
@@ -229,13 +223,10 @@ class IndeedScraper(SeleniumScraper):
                     db = DatabaseTools()
                     db.update_job_postings(obj)
 
-                # Prepare to switch pages. Saving the last working link is helful for error handling.
                 self.previous_url = self.get_current_url()
 
                 current_page += 1
         self.close_browser()
-
-    """Obtaining and parsing the job description from the job page."""
 
     def get_job_html(self, url: str):
 
@@ -284,7 +275,6 @@ class IndeedScraper(SeleniumScraper):
 
 def main(max_pages=15, dont_search=False, dont_update_job_descriptions=False, **search_params):
     print(f'Searching for {search_params["keywords"]} jobs in {search_params["location"]}.')
-    # Run the Scraper to collect job postings
     scraper = IndeedScraper(browser=Browsers.FIREFOX, use_database=False)
    
     if dont_search:
@@ -322,39 +312,29 @@ def main(max_pages=15, dont_search=False, dont_update_job_descriptions=False, **
         scraper.close_browser()
         print('All job postings updated.')
 
+class IndeedScraper(SeleniumScraper):
 
-# if __name__ == '__main__':
+def main(max_pages=15, dont_search=False, dont_update_job_descriptions=False, **search_params):
+    print(f'Searching for {search_params["keywords"]} jobs in {search_params["location"]}.')
+    scraper = IndeedScraper(browser=Browsers.FIREFOX, use_database=False)
+    if dont_search:
+        print(f'Skipping search. Only updating job descriptions.')
+    else:
+        print(f'Searching for {max_pages} pages of job postings.')
+        scraper.search_for_jobs(max_pages=max_pages, **search_params)
 
-    # # Set the search parameters
-    # KEYWORDS = 'Data Analyst'
-    # LOCATION = 'Remote'
-    # COUNTRY = IndeedScraper.Country.USA
-    # SORT_BY = IndeedScraper.SortBy.DATE
+KEYWORDS = 'Data Analyst'
+LOCATION = 'Remote'
+COUNTRY = IndeedScraper.Country.USA
+SORT_BY = IndeedScraper.SortBy.DATE
 
-    # # Construct the search parameters Object
-    # search_params = {
-    #     'keywords': KEYWORDS,
-    #     'location': LOCATION,
-    #     'country': COUNTRY,
-    #     'sort_by': SORT_BY
-    # }
-    
-    # #####!temp bug fix - for then we need to run the two processes separately
-    # # These options are nice to have for debugging and testing. 
-    # dont_search = False
-    # dont_update_job_descriptions = False
-        
-    # # Run the main function over max_pages=N, with the search parameters.
-    # main(
-    #     max_pages=5, 
-    #     dont_search=dont_search, 
-    #     dont_update_job_descriptions=dont_update_job_descriptions,
-    #     **search_params
-    # )
-    
-    # #####!temp bug fix - run just the description update again as it missses some for some larger jobs. This is a browser issue.
-    # main(max_pages=0, dont_search=dont_search, 
-    #      dont_update_job_descriptions=dont_update_job_descriptions, **search_params)
-    
+search_params = {
+    'keywords': KEYWORDS,
+    'location': LOCATION,
+    'country': COUNTRY,
+    'sort_by': SORT_BY
+}
+
+main(max_pages=5, dont_search=False, dont_update_job_descriptions=False, **search_params)
     
     
